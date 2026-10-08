@@ -110,4 +110,16 @@ PR 병합은 원격 origin/main을 갱신하며 각 로컬 폴더는 자동 갱�
 mini-watch/monitor/next-frontend/components/ApiNotes.js, api/notes.js와 기존 Flask 백엔드 소스입니다.
 프로덕션의 등록·상세·수정·삭제 및 오류/취소/저장 유지 검증은
 docs/api-ui-validation.json과 docs/api-integration-validation.json에 기록했습니다.
-PR 생성·검토·병합·pull의 실제 결과는 이어서 기록합니다.
+[앱 PR #1](https://github.com/gkacksdnjs22-stack/codemit-next-practice-day05/pull/1)은
+base main, head codex/next-api-notes, 변경 커밋 b0025118787890ca9f2d39e9324486e74fc01dde이며
+검토 뒤 merge commit 00a200cf0418123b17779f699ebc8daf98fd2d8c로 **Merged**입니다.
+원본 diff에서 DB 화면 연결·쿠키/CSRF 프록시·API 분리·기존 Flask SQL·실제 .env 제외를 검토했습니다.
+검토 내용과 통합8개/UI18개 검증 결과를 PR 본문에 남겼습니다.
+
+앱 폴더에서 main으로 전환하고 git pull --ff-only origin main을 실행하여
+`Updating 2ad5352..00a200c`로 실제 변경을 받았습니다.
+별도의 day05-reproduction clone에서도 `Updating b1c4476..00a200c` pull과 같은 HEAD를 확인했습니다.
+앱 폴더의 완료한 codex/next-api-notes는 git branch -d로 정리했습니다.
+[PR 생성·원본 diff·Merged JSON·양쪽 앱 clone pull 실제 출력](docs/next-pr-transcript.md)을 첨부합니다.
+원본 명령 출력의 공백 때문에 첫 diff --check는 로그 파일을 지적했고, 로그를 보존한 채
+소스 경로를 대상으로 다시 확인하여 오류가 없음을 확인했습니다.

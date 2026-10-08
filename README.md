@@ -94,8 +94,10 @@ DB 저장은 서버의 저장 값을 재조회하므로 새로고침 뒤에도 �
 한쪽만 수정, 삭제 확인·취소·확정, 수정 대상 삭제 시 폼 초기화, 다른 대상 삭제 시 입력 보존,
 전체 삭제 후 빈 안내, 새로고침 초기 2개 복원, 콘솔 오류 없음까지 **17항목 PASS**였습니다.
 
-Git 실습의 PR 3개도 모두 Merged입니다. 두 clone의 최종 main은
-`93b0e486e4b524076d75262399f5138e97d76655`로 같습니다.
+필수 Git 실습의 PR 3개와 충돌 심화 PR 2개는 모두 Merged입니다. 두 Git 실습 clone의 최종 main은
+`576b37611f78bff1df13fdba67ee3696a9e04df0`로 같습니다.
+Next.js 실제 변경도 [앱 PR #1](https://github.com/gkacksdnjs22-stack/codemit-next-practice-day05/pull/1)로
+검토·병합하고 main에서 pull했습니다. 앱의 변경과 화면 검증·PR 기록을 GIT_WORK.md에 연결했습니다.
 같은 줄 충돌 해결, Next.js 작업 PR, Flask·DB 메모 CRUD의 선택 심화도 추가했습니다.
 [필수·심화 체크리스트 근거](docs/checklist-review.md)를 확인할 수 있습니다.
 

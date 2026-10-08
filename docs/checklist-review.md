@@ -1,7 +1,7 @@
 # 제출 전 체크리스트 검토
 
 2026-10-08, [원문](https://classroom.codemit.kr/classes/5/problems/50/submit)의 필수 20개와 대조했습니다.
-필수 20/20을 아래 근거로 확인했습니다. 실제 강의실 채점과 별개인 제출 전 검토입니다.
+필수 20/20과 심화 4/4를 아래 근거로 확인했습니다. 실제 재채점과 별개인 제출 전 검토입니다.
 
 | 번호 | 필수 항목 | 결과와 근거 |
 |---|---|---|
@@ -31,6 +31,6 @@
 | 번호 | 선택 심화 | 결과와 근거 |
 |---|---|---|
 | 21 | 같은 줄 충돌 해결·같은 PR·병합·양쪽 pull·이유 | PASS — Git 실습 PR #4/#5 Merged, conflict-transcript.md의 실제 충돌·해결·양쪽576b376 |
-| 22 | Next.js 실제 변경 브랜치·PR·검토·병합·pull | 진행 중 — codex/next-api-notes에서 구현/검증 완료, PR 병합 후 최종 기록 추가 |
+| 22 | Next.js 실제 변경 브랜치·PR·검토·병합·pull | PASS — 앱 PR #1 Merged, b002511 변경과00a200c 병합, main pull·두 번째 clone pull을 next-pr-transcript.md에 기록 |
 | 23 | 기존 Flask DB 목록·상세·등록·새로고침 유지 | PASS — 기존 API/SQL 포함, 실제 프록시/DB 통합8개·브라우저18개 검증 |
 | 24 | 수정·삭제·취소·오류·새로고침 후 DB 유지 | PASS — PUT/DELETE200, 취소 보존, 공백400·없는 ID404·실패 안내, 서버 재실행 후 수정 유지 |
