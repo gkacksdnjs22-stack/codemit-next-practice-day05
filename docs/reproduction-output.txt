@@ -1,0 +1,73 @@
+cwd=C:\Users\User\OneDrive\문서\ChatGPT\코드밋
+> git clone https://github.com/gkacksdnjs22-stack/codemit-next-practice-day05.git C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction
+Cloning into 'C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction'...
+
+exit=0
+cwd=C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction
+> git rev-parse HEAD
+b1c4476667cd2c66680216ecbb66154d55b4e28c
+
+exit=0
+cwd=C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction
+> npm.cmd ci
+
+added 339 packages, and audited 340 packages in 27s
+
+141 packages are looking for funding
+  run `npm fund` for details
+
+5 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   unrs-resolver@1.12.2 (postinstall: node postinstall.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+exit=0
+cwd=C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction
+> npm.cmd run lint
+
+> next-practice@0.1.0 lint
+> eslint
+
+
+exit=0
+cwd=C:\Users\User\OneDrive\문서\ChatGPT\코드밋\dist\day05-reproduction
+> npm.cmd run build
+
+> next-practice@0.1.0 build
+> next build
+
+▲ Next.js 16.4.0 (Turbopack)
+✓ Running next.config.mjs took 27ms
+⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1804ms
+  Running TypeScript ...
+  Finished TypeScript in 5ms ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/5) ...
+  Generating static pages using 6 workers (1/5) 
+  Generating static pages using 6 workers (2/5) 
+  Generating static pages using 6 workers (3/5) 
+✓ Generating static pages using 6 workers (5/5) in 702ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ○ /notes
+
+
+○  (Static)  prerendered as static content
+
+
+exit=0

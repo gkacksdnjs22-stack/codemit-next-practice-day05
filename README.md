@@ -96,6 +96,9 @@ Git 실습의 PR 3개도 모두 Merged입니다. 두 clone의 최종 main은
 `93b0e486e4b524076d75262399f5138e97d76655`로 같습니다.
 선택 심화 4개는 미선택입니다. [필수 20개 근거](docs/checklist-review.md)를 확인할 수 있습니다.
 
+원격 저장소를 새 폴더에 clone한 뒤 `npm ci`, `npm run lint`, `npm run build`도 모두 성공했습니다.
+기존 node_modules나 빌드 캐시를 복사하지 않았습니다. [새 설치 실제 출력](docs/reproduction-output.txt)을 첨부합니다.
+
 ![프로덕션 메모 화면](docs/notes-production.jpg)
 
 ## 참고와 의존성 검토
