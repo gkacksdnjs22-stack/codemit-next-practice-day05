@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
       <div className="site-shell">
         <header className="site-header">
           <Link className="brand" href="/" aria-label="한 장 홈"><span className="brand-mark" aria-hidden="true">▱</span> 한 장<span className="brand-sub">a little note</span></Link>
-          <nav aria-label="주 메뉴"><Link href="/">홈</Link><Link href="/notes">메모</Link></nav>
+          <nav aria-label="주 메뉴"><Link href="/">홈</Link><Link href="/notes">메모</Link><Link href="/api-notes">DB 메모</Link></nav>
         </header>
         <main id="main">{children}</main>
         <footer className="site-footer"><span>한 장 · 일상의 작은 기록</span><span>가볍게 쓰고, 새롭게 시작해요.</span></footer>

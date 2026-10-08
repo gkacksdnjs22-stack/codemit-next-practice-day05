@@ -61,7 +61,7 @@ CHECKLIST.md 작성·커밋·push·PR #3·diff 검토·merge commit 병합 후 �
 `git branch -d feature/jiyun`과 `git branch -d feature/checklist`로 완료한 자기 브랜치를 정리했습니다.
 강제 -D 없이 병합 완료 로컬 브랜치만 삭제했습니다. 원격 브랜치는 PR 증빙용으로 보존했습니다.
 
-최종 두 폴더의 실제 결과:
+필수 실습 단계 종료 시 두 폴더의 실제 결과:
 
 ```text
 > git branch -vv
@@ -87,3 +87,27 @@ status 출력은 비어 있으며 두 작업 폴더가 깨끗합니다.
 **GitHub에서 PR을 병합한 뒤에도 각 폴더에서 pull해야 하는 이유는 무엇인가?**
 PR 병합은 원격 origin/main을 갱신하며 각 로컬 폴더는 자동 갱신되지 않습니다.
 각 폴더에서 pull해야 상대 파일과 병합 커밋을 받아 다음 작업을 최신 main에서 시작할 수 있습니다.
+
+## 심화 1 — 같은 줄 충돌 해결
+
+[실제 명령/충돌 표시/해결 커밋/양쪽 pull 출력](docs/conflict-transcript.md)을 추가했습니다.
+
+- [PR #4](https://github.com/gkacksdnjs22-stack/codemit-git-practice-day05/pull/4): 민수 폴더의 codex/title-minsu에서 README.md 첫 줄을 `# GitHub Flow 협업 기록`으로 변경. 커밋 6fdca10, 먼저 merge commit으로 병합.
+- [PR #5](https://github.com/gkacksdnjs22-stack/codemit-git-practice-day05/pull/5): 같은 원본 main에서 지윤의 codex/title-jiyun이 같은 줄을 `# GitHub Flow 실습 노트`로 변경. 최초 커밋 b4f7d82.
+- #4 병합 후 **codex/title-jiyun 작업 브랜치에서** git fetch origin과 git merge origin/main을 실행하여 실제 README.md 내용 충돌 및 UU 상태를 확인.
+- 최종 제목은 `# GitHub Flow 협업 실습 기록`. 민수의 협업 목적과 지윤의 실습 기록 목적을 모두 담고 본문은 보존하기 위해 선택.
+- 충돌 표시를 제거하고 해결 커밋 69f8707을 같은 브랜치에 push하여 **기존 PR #5**에 반영. PR 본문에도 이유와 검토 결과를 기록.
+- #5를 merge commit으로 병합하고 두 폴더 main에서 pull. 두 폴더에서 최종 제목을 직접 출력하여 동일함을 확인하고 자기 완료 브랜치를 git branch -d로 정리.
+
+최종 두 clone의 main은 모두 `576b37611f78bff1df13fdba67ee3696a9e04df0`입니다.
+#4 merge commit은 998fb3f5ce80f885af189fb07fbcab9a6868accb,
+#5 merge commit은 576b37611f78bff1df13fdba67ee3696a9e04df0이며 두 PR 모두 Merged입니다.
+
+## 심화 2 — Next.js 실제 변경 브랜치
+
+앱 저장소의 최신 main에서 `codex/next-api-notes`를 만들고 DB 메모 화면과 API 연결을 구현했습니다.
+실제 변경 파일은 app/api-notes/page.js, app/layout.js, app/globals.css, next.config.mjs,
+mini-watch/monitor/next-frontend/components/ApiNotes.js, api/notes.js와 기존 Flask 백엔드 소스입니다.
+프로덕션의 등록·상세·수정·삭제 및 오류/취소/저장 유지 검증은
+docs/api-ui-validation.json과 docs/api-integration-validation.json에 기록했습니다.
+PR 생성·검토·병합·pull의 실제 결과는 이어서 기록합니다.
