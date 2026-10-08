@@ -172,6 +172,7 @@ Next.js rewrites가 `/api/*`를 Flask로 전달하여 브라우저의 쿠키와 
 - [프로덕션 DB UI 검증 18개](docs/api-ui-validation.json): 등록/수정/삭제·취소·새로고침·서버 재실행·동시삭제404·연결실패 안내·로그아웃.
 - [필수 앱 회귀 검증](docs/advanced-regression-validation.json): 카운터와 state 메모·새로고침 초기화 유지.
 - [심화 빌드 출력](docs/advanced-build-output.txt), [시작 출력](docs/advanced-start-output.txt), [lint 출력](docs/advanced-lint-output.txt).
+- [별도 clone에서 심화까지 재설치·lint·빌드한 실제 출력](docs/advanced-reproduction-output.txt): 원격 main pull 후 npm ci부터 실행하여 /api-notes를 포함한 빌드 성공.
 
 검증용 계정·메모만 정리했고 이전 과제의 모든 메모 행이 변하지 않았음을 확인했습니다.
 API 연결 실패 검증에서는 Flask를 잠시 종료하여 예상한500 오류를 확인한 뒤 복원했습니다.
