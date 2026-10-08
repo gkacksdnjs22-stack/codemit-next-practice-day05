@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "url": "http://127.0.0.1:5300",
+  "flow": "Next.js → Flask → PostgreSQL",
+  "checks": [
+    {
+      "name": "Next.js proxy login: cookie/CSRF, unauthenticated401, missing CSRF403, blank400, wrong401, login200",
+      "result": "PASS"
+    },
+    {
+      "name": "Blank create400, existing notes preserved",
+      "result": "PASS"
+    },
+    {
+      "name": "Create201 and real PostgreSQL list/detail GET",
+      "result": "PASS"
+    },
+    {
+      "name": "Blank update400 preserves body/status/updated_at",
+      "result": "PASS"
+    },
+    {
+      "name": "PUT200, same ID, new-process PostgreSQL read preserves edited values",
+      "result": "PASS"
+    },
+    {
+      "name": "DELETE200, deleted ID absent on re-query, missing GET/PUT/DELETE404",
+      "result": "PASS"
+    },
+    {
+      "name": "Logout and protected API401",
+      "result": "PASS"
+    },
+    {
+      "name": "Only disposable data cleaned up; all existing DB rows preserved",
+      "result": "PASS"
+    }
+  ]
+}

@@ -26,4 +26,11 @@
 | 19 | build/start/실제 화면 | PASS — 빌드·시작 출력, 프로덕션 UI 17항목 PASS |
 | 20 | 소스/README/GIT_WORK | PASS — lock·설치 순서·원본 PR·실제 출력/화면 |
 
-선택 심화 4개는 미선택입니다. 필수 앱은 API/DB 없이 실행됩니다.
+필수 state 앱은 API/DB 없이 실행됩니다. 별도의 /api-notes 화면으로 아래 심화를 추가했습니다.
+
+| 번호 | 선택 심화 | 결과와 근거 |
+|---|---|---|
+| 21 | 같은 줄 충돌 해결·같은 PR·병합·양쪽 pull·이유 | PASS — Git 실습 PR #4/#5 Merged, conflict-transcript.md의 실제 충돌·해결·양쪽576b376 |
+| 22 | Next.js 실제 변경 브랜치·PR·검토·병합·pull | 진행 중 — codex/next-api-notes에서 구현/검증 완료, PR 병합 후 최종 기록 추가 |
+| 23 | 기존 Flask DB 목록·상세·등록·새로고침 유지 | PASS — 기존 API/SQL 포함, 실제 프록시/DB 통합8개·브라우저18개 검증 |
+| 24 | 수정·삭제·취소·오류·새로고침 후 DB 유지 | PASS — PUT/DELETE200, 취소 보존, 공백400·없는 ID404·실패 안내, 서버 재실행 후 수정 유지 |

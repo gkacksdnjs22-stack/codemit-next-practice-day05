@@ -2,7 +2,8 @@
 
 Codemit 2026-10-08 「Next.js 메모 앱과 Git 브랜치 협업 완성하기」의 필수 결과물입니다.
 홈 숫자 증가·초기화, 메모 등록·수정·삭제, 두 clone의 GitHub Flow 실습을 제공합니다.
-메모는 **React state**에만 저장되며 새로고침하면 초기 메모 2개로 돌아오는 것이 정상입니다.
+`/notes`는 **React state**에만 저장되며 새로고침하면 초기 메모 2개로 돌아오는 것이 정상입니다.
+`/api-notes`는 기존 Flask API와 PostgreSQL을 사용하여 새로고침 후에도 메모를 유지합니다.
 
 - [필수 20개 검토](docs/checklist-review.md)
 - [Git 작업 기록과 원본 PR](GIT_WORK.md)
@@ -22,7 +23,8 @@ npm run dev
 
 http://localhost:3000 과 http://localhost:3000/notes 에 접속합니다.
 ZIP은 압축 해제한 `next-practice` 폴더에서 `npm ci`부터 실행합니다.
-DB, Flask, 로그인 계정, 환경 변수는 필요하지 않습니다.
+필수 state 앱에는 DB, Flask, 로그인 계정, 환경 변수가 필요하지 않습니다.
+심화 DB 메모 화면은 아래의 추가 준비가 필요합니다.
 개발 서버를 Ctrl+C로 종료한 뒤 프로덕션을 실행합니다.
 
 ```cmd
@@ -94,12 +96,91 @@ DB 저장은 서버의 저장 값을 재조회하므로 새로고침 뒤에도 �
 
 Git 실습의 PR 3개도 모두 Merged입니다. 두 clone의 최종 main은
 `93b0e486e4b524076d75262399f5138e97d76655`로 같습니다.
-선택 심화 4개는 미선택입니다. [필수 20개 근거](docs/checklist-review.md)를 확인할 수 있습니다.
+같은 줄 충돌 해결, Next.js 작업 PR, Flask·DB 메모 CRUD의 선택 심화도 추가했습니다.
+[필수·심화 체크리스트 근거](docs/checklist-review.md)를 확인할 수 있습니다.
 
 원격 저장소를 새 폴더에 clone한 뒤 `npm ci`, `npm run lint`, `npm run build`도 모두 성공했습니다.
 기존 node_modules나 빌드 캐시를 복사하지 않았습니다. [새 설치 실제 출력](docs/reproduction-output.txt)을 첨부합니다.
 
 ![프로덕션 메모 화면](docs/notes-production.jpg)
+
+## 심화 DB 메모 설치·실행 — Windows CMD
+
+이전 과제의 Flask 백엔드를 `mini-watch/monitor/backend`에 그대로 포함했습니다.
+DB 연결·SQL·로그인·CSRF·메모 API 구조를 유지하고 Next.js 클라이언트를 연결했습니다.
+클라이언트는 `mini-watch/monitor/next-frontend`에 있으며 루트 Next.js의 `/api-notes`에서 실행됩니다.
+필수 앱과 패키지/빌드/서버를 공유하므로 프론트엔드 설치는 루트에서 한 번만 합니다.
+
+PostgreSQL이 실행 중인 환경에서 다음을 준비합니다. 이미 이전 과제 DB와 운영자 계정이 있으면
+DB 생성과 계정 생성은 건너뛰고 기존 접속 설정을 사용합니다. 기존 계정은 덮어쓰지 않습니다.
+
+```cmd
+py -m venv .venv
+.venv\Scripts\python.exe -m pip install -r mini-watch\monitor\backend\requirements.txt
+psql -U postgres -h 127.0.0.1 -f mini-watch\monitor\backend\sql\create_database.sql
+copy mini-watch\monitor\backend\.env.example mini-watch\monitor\backend\.env
+py -c "import secrets; print(secrets.token_hex(32))"
+notepad mini-watch\monitor\backend\.env
+```
+
+`.env`의 DB_HOST/PORT/NAME/USER/PASSWORD를 본인 PostgreSQL에 맞춥니다.
+SECRET_KEY에는 위 명령으로 생성한 값을 입력합니다. 기존 일반/감시 서비스의 로그인 세션을
+공유하려면 기존 서비스와 같은 SECRET_KEY를 사용합니다. 실제 값은 Git/ZIP에서 제외합니다.
+DB 이름 기본값은 codemit_monitor_db이며 sql/create_database.sql은 새 DB를 만들 때 한 번만 실행합니다.
+
+```cmd
+cd mini-watch\monitor\backend
+..\..\..\.venv\Scripts\python.exe setup_db.py --username next_operator --name 운영자
+set PORT=5200
+..\..\..\.venv\Scripts\python.exe app.py
+```
+
+setup_db.py는 sql/dashboard.sql로 테이블을 준비하고 비밀번호를 터미널에서 두 번 입력받습니다.
+8자 이상을 사용합니다. `--username`을 생략하면 기존 자료를 유지하며 테이블만 준비합니다.
+Flask 서버를 실행한 채 새 CMD를 열어 저장소 루트에서 실행합니다.
+
+```cmd
+copy .env.example .env
+npm ci
+npm run build
+npm run start -- --hostname 127.0.0.1 --port 5300
+```
+
+http://127.0.0.1:5300/api-notes 에서 생성한 운영자 계정으로 로그인합니다.
+루트 `.env`의 FLASK_API_ORIGIN 기본값은 http://127.0.0.1:5200 입니다.
+Flask 포트를 바꿨다면 이 값도 바꾸고 Next.js를 다시 빌드·실행합니다.
+Next.js rewrites가 `/api/*`를 Flask로 전달하여 브라우저의 쿠키와 CSRF 헤더를 유지합니다.
+브라우저는 DB에 직접 연결하지 않습니다. 서버 접근 제한이나 CSRF 보호를 해제하지 않았습니다.
+
+| 화면 동작 | 기존 Flask API |
+|---|---|
+| 세션 복원/로그인/로그아웃 | GET /api/auth/me, POST /api/auth/login, POST /api/auth/logout |
+| 목록/번호·제목으로 상세 조회 | GET /api/notes, GET /api/notes/번호 |
+| 제목·내용·처리 상태 등록 | POST /api/notes |
+| 기존 값 수정과 저장 | PUT /api/notes/번호 |
+| 확인 후 선택한 메모 삭제 | DELETE /api/notes/번호 |
+
+수정/삭제 취소는 API로 변경을 보내지 않아 DB 원본이 보존됩니다.
+빈 입력은 서버400, 없는 번호는404, 로그인/CSRF 실패는401/403을 안내하며 성공으로 표시하지 않습니다.
+저장·삭제 성공 후 목록을 다시 조회합니다. 같은 ID의 수정 값과 삭제 결과는 새로고침 후에도 유지됩니다.
+
+## 심화 실제 검증
+
+- [실제 HTTP/DB 통합 검증 8개](docs/api-integration-validation.json): Next.js 프록시·쿠키·CSRF·CRUD·400/404·새 프로세스 DB 조회·기존 자료 보존.
+- [프로덕션 DB UI 검증 18개](docs/api-ui-validation.json): 등록/수정/삭제·취소·새로고침·서버 재실행·동시삭제404·연결실패 안내·로그아웃.
+- [필수 앱 회귀 검증](docs/advanced-regression-validation.json): 카운터와 state 메모·새로고침 초기화 유지.
+- [심화 빌드 출력](docs/advanced-build-output.txt), [시작 출력](docs/advanced-start-output.txt), [lint 출력](docs/advanced-lint-output.txt).
+
+검증용 계정·메모만 정리했고 이전 과제의 모든 메모 행이 변하지 않았음을 확인했습니다.
+API 연결 실패 검증에서는 Flask를 잠시 종료하여 예상한500 오류를 확인한 뒤 복원했습니다.
+Flask 재실행 뒤에도 수정된 본문/완료 상태와 로그인 세션이 유지되었습니다.
+검증을 다시 실행하려면 서버 두 개를 켠 상태로 저장소 루트에서 다음을 실행합니다.
+
+```cmd
+.venv\Scripts\python.exe scripts\verify_db_api.py --url http://127.0.0.1:5300
+```
+
+![PostgreSQL 메모 수정 후 재조회 화면](docs/api-notes-production.jpg)
 
 ## 참고와 의존성 검토
 
