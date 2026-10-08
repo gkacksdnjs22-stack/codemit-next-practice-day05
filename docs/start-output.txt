@@ -1,0 +1,9 @@
+
+> next-practice@0.1.0 start
+> next start --hostname 127.0.0.1 --port 5300
+
+▲ Next.js 16.4.0
+- Local:         http://127.0.0.1:5300
+- Network:       http://127.0.0.1:5300
+✓ Ready in 181ms
+✓ Running next.config.mjs took 23ms

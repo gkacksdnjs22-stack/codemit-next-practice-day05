@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-08",
+  "timezone": "Asia/Seoul",
+  "mode": "npm run build → npm run start, Next.js 16.4.0",
+  "checks": [
+    {
+      "name": "홈 숫자 증가",
+      "result": "PASS",
+      "detail": "0 → 1 → 2"
+    },
+    {
+      "name": "홈 숫자 초기화",
+      "result": "PASS",
+      "detail": "2 → 0"
+    },
+    {
+      "name": "Next.js Link 이동",
+      "result": "PASS",
+      "detail": "홈 → /notes, 초기 메모 2개 표시"
+    },
+    {
+      "name": "빈 등록 거절",
+      "result": "PASS",
+      "detail": "안내 표시, 초기 메모 2개 보존"
+    },
+    {
+      "name": "공백 등록 거절",
+      "result": "PASS",
+      "detail": "공백/줄바꿈 입력 거절, 목록 보존"
+    },
+    {
+      "name": "중복 내용 등록과 고유 ID",
+      "result": "PASS",
+      "detail": "같은 내용 2개 등록, 서로 다른 UUID로 초기 메모 포함 4개 구별"
+    },
+    {
+      "name": "기존 내용 표시와 수정 취소",
+      "result": "PASS",
+      "detail": "기존 값으로 시작, 취소 후 모든 ID/내용 보존"
+    },
+    {
+      "name": "공백 수정 거절",
+      "result": "PASS",
+      "detail": "오류 안내 표시, 수정 대상과 다른 메모 모두 보존"
+    },
+    {
+      "name": "ID에 따른 수정 저장",
+      "result": "PASS",
+      "detail": "3번 ID 유지/앞뒤 공백 제거, 4번의 같은 내용 메모 보존"
+    },
+    {
+      "name": "삭제 확인과 취소",
+      "result": "PASS",
+      "detail": "확인창을 열기만 해서는 변화 없음, 취소 후 모든 메모 보존"
+    },
+    {
+      "name": "선택한 ID만 삭제",
+      "result": "PASS",
+      "detail": "4번 메모만 삭제, 수정된 3번 메모 보존"
+    },
+    {
+      "name": "다른 메모 삭제 중 수정 유지",
+      "result": "PASS",
+      "detail": "수정 대상과 무관한 ID 삭제 후 작성 중인 수정 내용 유지"
+    },
+    {
+      "name": "수정 대상 삭제 후 폼 초기화",
+      "result": "PASS",
+      "detail": "수정 중인 ID를 삭제하면 빈 입력과 등록 버튼으로 복귀"
+    },
+    {
+      "name": "빈 목록 안내",
+      "result": "PASS",
+      "detail": "모든 메모 삭제 후 안내 표시"
+    },
+    {
+      "name": "새로고침 초기화",
+      "result": "PASS",
+      "detail": "빈 목록에서 새로고침 후 초기 ID/내용 2개 복원"
+    },
+    {
+      "name": "홈으로 Link 이동",
+      "result": "PASS",
+      "detail": "/notes → /, 카운터 정상 표시"
+    },
+    {
+      "name": "브라우저 오류 확인",
+      "result": "PASS",
+      "detail": "프로덕션 동작 시 콘솔 error 없음"
+    }
+  ]
+}
